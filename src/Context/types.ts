@@ -42,10 +42,10 @@ export interface FormContextType {
    * An object that provides user information for validating and
    * submitting to server
    *
-   * @property firstName - First name of user
-   * @property lastName - Last name of user
-   * @property email - Email of user
-   * @property password - Password of user
+   * @property firstName
+   * @property lastName
+   * @property email
+   * @property password
    */
   info: InfoType;
 

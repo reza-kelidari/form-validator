@@ -30,6 +30,7 @@
     }
 
     .input {
+      min-width: 20rem;
       &.incorrect {
         border-color: transparent;
         background: #ff414122;

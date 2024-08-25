@@ -1,10 +1,10 @@
 import GlobalStyles from "../../global.module.scss";
 import Styles from "./styles.module.scss";
 import Banner from "../../Components/Banner";
-import Name, { nameValidate } from "./Components/Name";
 import { useState } from "react";
 import { StepType } from "./types";
-import Email from "./Components/Email";
+import Name, { nameValidate } from "./Components/Name";
+import Email, { emailValidate } from "./Components/Email";
 import useFormContext from "../../Context/Form";
 
 /**
@@ -34,7 +34,7 @@ export default function SignUp(): JSX.Element {
     },
     {
       element: <Email />,
-      validate: () => nameValidate(info),
+      validate: () => emailValidate(info),
       title: "ایمیل",
       subTitle: "گام دوم",
     },
