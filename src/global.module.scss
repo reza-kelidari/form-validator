@@ -1,0 +1,67 @@
+@font-face {
+  font-family: NotoSansArabic;
+  src: url("./Fonts/Noto\ Sans\ Arabic\ Variable\ wdth\,wght.ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 20px NotoSansArabic;
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  direction: rtl;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  background: #ffffff11;
+  padding: 0rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: 0.3s ease-in-out all;
+
+  &:hover {
+    background: #ffffff22;
+  }
+}
+
+input {
+  padding: 0.5rem 1rem;
+  border: 2px solid #00000022;
+  border-radius: 1rem;
+  font: 1rem NotoSansArabic;
+  background: transparent;
+  transition: 0.3s ease-in-out all;
+
+  &:focus {
+    outline: none;
+    border-color: transparent;
+    background: #4e41ff22;
+  }
+}
+
+button {
+  background: #4e41ff;
+  border: none;
+  border-radius: 1rem;
+  color: #fff;
+  font: 1rem NotoSansArabic;
+  padding: 0.5rem 2rem;
+
+  &.secondary {
+    background: #fff;
+    color: #4e41ff;
+    border: 2px solid #4e41ff;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+  }
+}
