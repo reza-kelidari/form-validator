@@ -4,6 +4,8 @@ import Banner from "../../Components/Banner";
 import Name, { nameValidate } from "./Components/Name";
 import { useState } from "react";
 import { StepType } from "./types";
+import Email from "./Components/Email";
+import useFormContext from "../../Context/Form";
 
 /**
  * Sing Up page
@@ -16,18 +18,23 @@ import { StepType } from "./types";
  */
 export default function SignUp(): JSX.Element {
   /**
+   * Object that contains information that user provided
+   */
+  const info = useFormContext().info;
+
+  /**
    * An array contains list of sign up steps
    */
   const steps: Array<StepType> = [
     {
       element: <Name />,
-      validate: nameValidate,
+      validate: () => nameValidate(info),
       title: "مشخصات فردی",
       subTitle: "گام اول",
     },
     {
-      element: <Name />,
-      validate: nameValidate,
+      element: <Email />,
+      validate: () => nameValidate(info),
       title: "ایمیل",
       subTitle: "گام دوم",
     },
@@ -67,7 +74,7 @@ export default function SignUp(): JSX.Element {
               !steps[stepNumber].validate() ? GlobalStyles.disabled : ""
             }
             onClick={() =>
-              stepNumber < steps.length - 1
+              stepNumber < steps.length - 1 && steps[stepNumber].validate()
                 ? setStepNumber((prevState) => prevState + 1)
                 : ""
             }

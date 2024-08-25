@@ -1,48 +1,54 @@
 import Styles from "./styles.module.scss";
 import { InfoType } from "../../../../Context/types";
-import { NameValidateType } from "./types";
+import {
+  FirstNameValidateType,
+  LastNameValidateType,
+  NameValidateType,
+} from "./types";
 import useFormContext from "../../../../Context/Form";
 
 /**
- * Validates user data to ensure the first and last names
+ * Validates user data to ensure the first name is longer
+ * than 2 characters.
+ *
+ * @param info Object that contains user info
+ */
+export const firstNameValidate: FirstNameValidateType = (info: InfoType) => {
+  /**
+   * Check if user provided first name, and it's longer than 2
+   * characters
+   */
+  return info.firstName.length > 2 ? true : false;
+};
+
+/**
+ * Validates user data to ensure the first name is longer
+ * than 2 characters.
+ *
+ * @param info Object that contains user info
+ */
+export const lastNameValidate: LastNameValidateType = (info: InfoType) => {
+  /**
+   * Check if user provided first name, and it's longer than 2
+   * characters
+   */
+  return info.lastName.length > 2 ? true : false;
+};
+
+/**
+ * Validates user data to ensure the both first and last names
  * are longer than 2 characters.
  *
- * @returns `true` if both `firstName` and `lastName` are
- * longer than 2 characters, otherwise `false`.
+ * @param info Object that contains user info
  */
-export const nameValidate: NameValidateType = () => {
-  /**
-   * Object that contains information that user provided
-   */
-  const info = useFormContext().info;
-
-  /**
-   * If user provided both both `firstName` and `lastName`,
-   * go through
-   */
-  if (info.firstName && info.lastName) {
-    /**
-     * If both `firstName` and `lastName` are longer than
-     * 2 characters, return true
-     */
-    if (info.firstName.length > 2 && info.lastName.length > 2) {
-      return true;
-    }
-  }
-
-  /**
-   * Return false If:
-   * - User not provided first name or last name
-   * - One of them shorter that 2 characters
-   */
-  return false;
-};
+export const nameValidate: NameValidateType = (info: InfoType) =>
+  firstNameValidate(info) && lastNameValidate(info);
 
 /**
  * This component renders a form that sets user first and last names
  * in `FormContext`
- * 
- * *For using in Sign Up page*
+ *
+ * - *For using in Sign Up page*
  *
  * @returns {JSX.Element}
  */
@@ -82,7 +88,7 @@ export default function Name(): JSX.Element {
              */
             className={[
               Styles.input,
-              info.firstName && info.firstName.length < 3
+              info.firstName && !firstNameValidate(info)
                 ? Styles.incorrect
                 : "",
             ].join(" ")}
@@ -108,7 +114,7 @@ export default function Name(): JSX.Element {
              */
             className={[
               Styles.input,
-              info.lastName && info.lastName.length < 3 ? Styles.incorrect : "",
+              info.lastName && !lastNameValidate(info) ? Styles.incorrect : "",
             ].join(" ")}
           />
         </div>

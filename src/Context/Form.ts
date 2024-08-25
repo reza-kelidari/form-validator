@@ -5,7 +5,12 @@ import { FormContextHookType, FormContextType } from "./types";
  * Maintains user data before sign up
  */
 export const FormContext = createContext<FormContextType>({
-  info: {},
+  info: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  },
   setInfo: () => {},
 });
 
