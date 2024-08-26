@@ -9,19 +9,42 @@ import { EmailValidateType } from "./types";
  * @param info Object that contains user info
  */
 export const emailValidate: EmailValidateType = (info) => {
-  if (info.email.includes("@"))
-    if (info.email.includes("."))
-      if (info.email.indexOf("@") < info.email.indexOf("."))
-        if (info.email.indexOf("@") > 0)
-          if (info.email.indexOf(".") < info.email.length - 1) return true;
+  /**
+   * Email that extracted form provided info object
+   */
+  const email = info.email;
 
+  /**
+   * Position of `@` in email
+   */
+  const atIndex = email.indexOf("@");
+
+  /**
+   * Position of `.` in email
+   */
+  const dotIndex = email.lastIndexOf(".");
+
+  /** If email is longer that 5 character,
+   * and `@` is not first character,
+   * and `.` is not last character,
+   * and `@` is before `.`,
+   * then the email is correct.
+   */
+  if (email.length > 5)
+    if (atIndex > 0)
+      if (dotIndex > atIndex + 1)
+        if (dotIndex < info.email.length - 1) return true;
+
+  /**
+   * Otherwise, the email is not correct.
+   */
   return false;
 };
 
 /**
  * This component renders a form that sets email in `FormContext`
  *
- * - *For using in Sign Up page*
+ * *For using in Sign Up page*
  *
  * @returns {JSX.Element}
  */
@@ -43,6 +66,7 @@ export default function Email(): JSX.Element {
         <span className={Styles.name}>ایمیل</span>
         <input
           type="email"
+          dir="ltr"
           name="email"
           placeholder="mohammadi@gmail.com"
           value={info.email}
@@ -52,10 +76,6 @@ export default function Email(): JSX.Element {
               email: event.target.value,
             }))
           }
-          /**
-           * If user inserted anything as last name, and it has
-           * less than 3 charecter, it's incorrect
-           */
           className={[
             Styles.input,
             info.email && !emailValidate(info) ? Styles.incorrect : "",

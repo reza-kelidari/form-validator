@@ -48,7 +48,7 @@ export const nameValidate: NameValidateType = (info: InfoType) =>
  * This component renders a form that sets user first and last names
  * in `FormContext`
  *
- * - *For using in Sign Up page*
+ * *For using in Sign Up page*
  *
  * @returns {JSX.Element}
  */
@@ -82,10 +82,6 @@ export default function Name(): JSX.Element {
                 firstName: event.target.value,
               }))
             }
-            /**
-             * If user inserted anything as first name, and it has
-             * less than 3 charecter, it's incorrect
-             */
             className={[
               Styles.input,
               info.firstName && !firstNameValidate(info)
@@ -108,10 +104,6 @@ export default function Name(): JSX.Element {
                 lastName: event.target.value,
               }))
             }
-            /**
-             * If user inserted anything as last name, and it has
-             * less than 3 charecter, it's incorrect
-             */
             className={[
               Styles.input,
               info.lastName && !lastNameValidate(info) ? Styles.incorrect : "",
