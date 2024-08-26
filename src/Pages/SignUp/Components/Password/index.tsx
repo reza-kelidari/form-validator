@@ -9,7 +9,35 @@ import Styles from "../styles.module.scss";
  * @param info Object that contains user info
  */
 export function firstPasswordValidate(info: InfoType) {
-  return info.password.length >= 8 ? true : false;
+  /**
+   * Password string from info Object
+   */
+  const password = info.password;
+
+  /**
+   * Checks does password has letters
+   *
+   * If any character being a letter, it's `lower case` is diffrent
+   * from `upper case`
+   */
+  const hasLetter = password
+    .split("")
+    .some((char) => char.toLowerCase() !== char.toUpperCase());
+
+  /**
+   * Checks does password contains any number
+   *
+   * If any character being a number, parseInt should return something
+   * diffrent than NaN
+   */
+  const hasDigit = password.split("").some((char) => !isNaN(parseInt(char)));
+
+  /**
+   * If the password contains letters and numbers, and it's longer
+   * than 8 characters, it's correct; otherwise it's not.
+   */
+
+  return hasLetter && hasDigit && password.length >= 8;
 }
 
 /**
@@ -19,7 +47,7 @@ export function firstPasswordValidate(info: InfoType) {
  * @param info Object that contains user info
  */
 export function secondPasswordValidate(info: InfoType) {
-  return info.passwordRepeat.length >= 8 &&
+  return info.passwordRepeat?.length >= 8 &&
     info.passwordRepeat === info.password
     ? true
     : false;
@@ -52,10 +80,8 @@ export default function Password(): JSX.Element {
   return (
     <div className={Styles.container}>
       <div className={Styles.titleBar}>
-        <h1 className={Styles.title}>مشخصات ات رو وارد کن</h1>
-        <h3 className={Styles.subTitle}>
-          این مشخصات رو برای حساب ات استفاده میکنیم.
-        </h3>
+        <h1 className={Styles.title}>یه رمز عبور وارد کن</h1>
+        <h3 className={Styles.subTitle}>حداقل 8 حرف و عدد </h3>
       </div>
 
       <div className={Styles.inputs}>
