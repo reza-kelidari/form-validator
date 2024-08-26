@@ -1,14 +1,13 @@
 import useFormContext from "../../../../Context/Form";
 import { InfoType } from "../../../../Context/types";
-import Styles from "./styles.module.scss";
-import { EmailValidateType } from "./types";
+import Styles from "../styles.module.scss";
 
 /**
  * Validates user data to ensure the email in current
  *
  * @param info Object that contains user info
  */
-export const emailValidate: EmailValidateType = (info) => {
+export function emailValidate(info: InfoType) {
   /**
    * Email that extracted form provided info object
    */
@@ -39,7 +38,7 @@ export const emailValidate: EmailValidateType = (info) => {
    * Otherwise, the email is not correct.
    */
   return false;
-};
+}
 
 /**
  * This component renders a form that sets email in `FormContext`

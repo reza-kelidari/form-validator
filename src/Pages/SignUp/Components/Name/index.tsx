@@ -1,10 +1,5 @@
 import Styles from "./styles.module.scss";
 import { InfoType } from "../../../../Context/types";
-import {
-  FirstNameValidateType,
-  LastNameValidateType,
-  NameValidateType,
-} from "./types";
 import useFormContext from "../../../../Context/Form";
 
 /**
@@ -13,13 +8,13 @@ import useFormContext from "../../../../Context/Form";
  *
  * @param info Object that contains user info
  */
-export const firstNameValidate: FirstNameValidateType = (info: InfoType) => {
+export function firstNameValidate(info: InfoType): boolean {
   /**
    * Check if user provided first name, and it's longer than 2
    * characters
    */
-  return info.firstName.length > 2 ? true : false;
-};
+  return info.firstName.length > 2;
+}
 
 /**
  * Validates user data to ensure the first name is longer
@@ -27,13 +22,13 @@ export const firstNameValidate: FirstNameValidateType = (info: InfoType) => {
  *
  * @param info Object that contains user info
  */
-export const lastNameValidate: LastNameValidateType = (info: InfoType) => {
+export function lastNameValidate(info: InfoType): boolean {
   /**
    * Check if user provided first name, and it's longer than 2
    * characters
    */
-  return info.lastName.length > 2 ? true : false;
-};
+  return info.lastName.length > 2;
+}
 
 /**
  * Validates user data to ensure the both first and last names
@@ -41,8 +36,12 @@ export const lastNameValidate: LastNameValidateType = (info: InfoType) => {
  *
  * @param info Object that contains user info
  */
-export const nameValidate: NameValidateType = (info: InfoType) =>
-  firstNameValidate(info) && lastNameValidate(info);
+export function nameValidate(info: InfoType): boolean {
+  /**
+   * Checks if both user first and last names are correct
+   */
+  return firstNameValidate(info) && lastNameValidate(info);
+}
 
 /**
  * This component renders a form that sets user first and last names
@@ -96,7 +95,7 @@ export default function Name(): JSX.Element {
           <input
             type="text"
             name="lname"
-            placeholder="محمدی "
+            placeholder="محمدی"
             value={info.lastName}
             onChange={(event) =>
               setInfo((prevState: InfoType) => ({

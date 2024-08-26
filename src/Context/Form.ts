@@ -10,6 +10,7 @@ export const FormContext = createContext<FormContextType>({
     lastName: "",
     email: "",
     password: "",
+    passwordRepeat: "",
   },
   setInfo: () => {},
 });

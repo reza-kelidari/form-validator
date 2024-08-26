@@ -6,6 +6,7 @@ import { StepType } from "./types";
 import Name, { nameValidate } from "./Components/Name";
 import Email, { emailValidate } from "./Components/Email";
 import useFormContext from "../../Context/Form";
+import Password, { passwordValidate } from "./Components/Password";
 
 /**
  * Sing Up page
@@ -37,6 +38,12 @@ export default function SignUp(): JSX.Element {
       validate: () => emailValidate(info),
       title: "ایمیل",
       subTitle: "گام دوم",
+    },
+    {
+      element: <Password />,
+      validate: () => passwordValidate(info),
+      title: "رمز عبور",
+      subTitle: "گام سوم",
     },
   ];
 

@@ -21,6 +21,11 @@ export interface InfoType {
    * Password of user
    */
   password: string;
+
+  /**
+   * Repeated password of user
+   */
+  passwordRepeat: string;
 }
 
 /**
@@ -46,6 +51,7 @@ export interface FormContextType {
    * @property lastName
    * @property email
    * @property password
+   * @property passwordRepeat
    */
   info: InfoType;
 
