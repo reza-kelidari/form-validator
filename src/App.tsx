@@ -3,6 +3,7 @@ import SignUp from "./Pages/SignUp";
 import { useState } from "react";
 import { FormContext } from "./Context/Form";
 import { InfoType } from "./Context/types";
+import Login from "./Pages/Login";
 
 function App() {
   /**
@@ -13,6 +14,7 @@ function App() {
     lastName: "",
     email: "",
     password: "",
+    passwordRepeat: "",
   });
 
   return (
@@ -20,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </FormContext.Provider>

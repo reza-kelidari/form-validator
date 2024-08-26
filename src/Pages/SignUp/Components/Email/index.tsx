@@ -1,6 +1,6 @@
 import useFormContext from "../../../../Context/Form";
 import { InfoType } from "../../../../Context/types";
-import Styles from "../styles.module.scss";
+import Styles from "../../../styles.module.scss";
 
 /**
  * Validates user data to ensure the email in current
@@ -55,32 +55,34 @@ export default function Email(): JSX.Element {
   const { info, setInfo } = useFormContext();
 
   return (
-    <div className={Styles.container}>
+    <>
       <div className={Styles.titleBar}>
         <h1 className={Styles.title}>ایمیل ات رو وارد کن</h1>
-        <h3 className={Styles.subTitle}>با این ایمیل وارد حسابت میشی </h3>
+        <h3 className={Styles.subTitle}>با این ایمیل وارد حسابت میشی.</h3>
       </div>
 
-      <div className={Styles.InputBar}>
-        <span className={Styles.name}>ایمیل</span>
-        <input
-          type="email"
-          dir="ltr"
-          name="email"
-          placeholder="mohammadi@gmail.com"
-          value={info.email}
-          onChange={(event) =>
-            setInfo((prevState: InfoType) => ({
-              ...prevState,
-              email: event.target.value,
-            }))
-          }
-          className={[
-            Styles.input,
-            info.email && !emailValidate(info) ? Styles.incorrect : "",
-          ].join(" ")}
-        />
+      <div className={Styles.inputs}>
+        <div className={Styles.InputBar}>
+          <span className={Styles.name}>ایمیل</span>
+          <input
+            type="email"
+            dir="ltr"
+            name="email"
+            placeholder="mohammadi@gmail.com"
+            value={info.email}
+            onChange={(event) =>
+              setInfo((prevState: InfoType) => ({
+                ...prevState,
+                email: event.target.value,
+              }))
+            }
+            className={[
+              Styles.input,
+              info.email && !emailValidate(info) ? Styles.incorrect : "",
+            ].join(" ")}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

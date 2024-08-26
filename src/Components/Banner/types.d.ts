@@ -23,5 +23,5 @@ export interface BannerProps {
    *
    * Optional, if not defined will be `[]`
    */
-  steps: Array<StepType>;
+  steps?: Array<StepType>;
 }

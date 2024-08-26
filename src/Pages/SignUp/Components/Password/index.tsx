@@ -1,6 +1,6 @@
 import useFormContext from "../../../../Context/Form";
 import { InfoType } from "../../../../Context/types";
-import Styles from "../styles.module.scss";
+import Styles from "../../../styles.module.scss";
 
 /**
  * Validates user data to unsure the first password is
@@ -10,7 +10,7 @@ import Styles from "../styles.module.scss";
  */
 export function firstPasswordValidate(info: InfoType) {
   /**
-   * Password string from info Object
+   * Password string from info object
    */
   const password = info.password;
 
@@ -47,10 +47,21 @@ export function firstPasswordValidate(info: InfoType) {
  * @param info Object that contains user info
  */
 export function secondPasswordValidate(info: InfoType) {
-  return info.passwordRepeat?.length >= 8 &&
-    info.passwordRepeat === info.password
-    ? true
-    : false;
+  /**
+   * Main password string from info object
+   */
+  const password = info.password;
+
+  /**
+   * Repeated password string from info object
+   */
+  const passwordRepeat = info.passwordRepeat;
+
+  if (passwordRepeat)
+    if (passwordRepeat.length >= 8)
+      if (passwordRepeat === password) return true;
+
+  return false;
 }
 
 /**
@@ -78,10 +89,10 @@ export default function Password(): JSX.Element {
   const { info, setInfo } = useFormContext();
 
   return (
-    <div className={Styles.container}>
+    <>
       <div className={Styles.titleBar}>
         <h1 className={Styles.title}>یه رمز عبور وارد کن</h1>
-        <h3 className={Styles.subTitle}>حداقل 8 حرف و عدد </h3>
+        <h3 className={Styles.subTitle}>باید حداقل 8 حرف و عدد باشه.</h3>
       </div>
 
       <div className={Styles.inputs}>
@@ -129,6 +140,6 @@ export default function Password(): JSX.Element {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }

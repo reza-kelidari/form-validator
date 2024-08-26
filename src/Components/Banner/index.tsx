@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import Styles from "./styles.module.scss";
 import { BannerProps } from "./types";
 
-export default function Banner({ active, steps = [] }: BannerProps) {
+export default function Banner({ active, steps }: BannerProps) {
   /**
    * Provides information of current url path
    */
@@ -37,7 +37,7 @@ export default function Banner({ active, steps = [] }: BannerProps) {
        */}
       {isActivePropUsed ? (
         <div className={Styles.steps}>
-          {steps.map((step, index) => (
+          {steps?.map((step, index) => (
             <div className={Styles.step} key={index}>
               <span
                 className={[

@@ -1,4 +1,4 @@
-import Styles from "./styles.module.scss";
+import Styles from "../../../styles.module.scss";
 import { InfoType } from "../../../../Context/types";
 import useFormContext from "../../../../Context/Form";
 
@@ -13,7 +13,7 @@ export function firstNameValidate(info: InfoType): boolean {
    * Check if user provided first name, and it's longer than 2
    * characters
    */
-  return info.firstName.length > 2;
+  return info.firstName ? info.firstName.length > 2 : false;
 }
 
 /**
@@ -27,7 +27,7 @@ export function lastNameValidate(info: InfoType): boolean {
    * Check if user provided first name, and it's longer than 2
    * characters
    */
-  return info.lastName.length > 2;
+  return info.lastName ? info.lastName.length > 2 : false;
 }
 
 /**
@@ -59,7 +59,7 @@ export default function Name(): JSX.Element {
   const { info, setInfo } = useFormContext();
 
   return (
-    <div className={Styles.container}>
+    <>
       <div className={Styles.titleBar}>
         <h1 className={Styles.title}>مشخصات ات رو وارد کن</h1>
         <h3 className={Styles.subTitle}>
@@ -110,6 +110,6 @@ export default function Name(): JSX.Element {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }

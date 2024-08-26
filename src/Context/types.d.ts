@@ -5,12 +5,12 @@ export interface InfoType {
   /**
    * First name of user
    */
-  firstName: string;
+  firstName?: string;
 
   /**
    * Last name of user
    */
-  lastName: string;
+  lastName?: string;
 
   /**
    * Email of user
@@ -25,7 +25,7 @@ export interface InfoType {
   /**
    * Repeated password of user
    */
-  passwordRepeat: string;
+  passwordRepeat?: string;
 }
 
 /**
