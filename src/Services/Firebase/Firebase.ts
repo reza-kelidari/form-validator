@@ -108,7 +108,7 @@ export async function logout(): Promise<void> {
   try {
     await signOut(auth);
   } catch (error: any) {
-    throw new Error(error.code);
+    throw new Error(error.message);
   }
 }
 
@@ -138,7 +138,12 @@ export async function deleteAccount(): Promise<void> {
       throw new Error("An error occured during delete account");
     }
   } catch (error: any) {
-    throw new Error(error.code);
+    switch (error.code) {
+      case "auth/requires-recent-login":
+        throw new Error("یکبار از حساب خود خارج شده و دوباره وارد شوید");
+      default:
+        throw new Error(error.code);
+    }
   }
 }
 

@@ -1,12 +1,19 @@
-import { Link, useLocation } from "react-router-dom";
 import Styles from "./styles.module.scss";
+import GlobalStyles from "../../global.module.scss";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BannerProps } from "./types";
+import { logout } from "../../Services/Firebase/Firebase";
 
 export default function Banner({ active, steps }: BannerProps) {
   /**
    * Provides information of current url path
    */
   const location = useLocation();
+
+  /**
+   * Navigation method
+   */
+  const navigate = useNavigate();
 
   /**
    * `true` if `active` prop not being `undefined`, otherwise it's
@@ -78,6 +85,23 @@ export default function Banner({ active, steps }: BannerProps) {
         >
           {location.pathname === "/" ? "وارد شو" : "یه حساب درست کن"}
         </Link>
+      </div>
+
+      {/**
+       * Will be hidden if user not being in `/profile`
+       */}
+      <div
+        className={[
+          Styles.change,
+          location.pathname !== "/profile" ? Styles.hide : "",
+        ].join(" ")}
+      >
+        <button
+          className={[GlobalStyles.link, GlobalStyles.secondary].join(" ")}
+          onClick={() => logout().then(() => navigate("/login"))}
+        >
+          خروج
+        </button>
       </div>
     </div>
   );

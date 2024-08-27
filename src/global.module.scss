@@ -23,7 +23,7 @@ a {
   color: #fff;
   text-decoration: none;
   background: #ffffff11;
-  padding: 0rem 0.5rem;
+  padding: 0rem 1rem;
   border-radius: 0.5rem;
   transition: 0.3s ease-in-out all;
 
@@ -54,18 +54,35 @@ button {
   color: #fff;
   font: 1rem NotoSansArabic;
   padding: 0.5rem 2rem;
+  border: 2px solid transparent;
 
   &.secondary {
     background: #fff;
     color: #4e41ff;
-    border: 2px solid #4e41ff;
+    border-color: #4e41ff;
   }
 
   &.disabled {
     opacity: 0.5;
   }
 
+  &.alert {
+    background: #ff4141;
+  }
+
+  &.link {
+    background: #ffffff11;
+    border: unset;
+    color: #fff;
+    transition: 0.3s ease-in-out all;
+
+    &:hover {
+      background: #ffffff22;
+    }
+  }
+
   &.small {
     padding: 0 0.5rem;
+    border-radius: 0.5rem;
   }
 }
