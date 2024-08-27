@@ -1,7 +1,7 @@
 import Styles from "../styles.module.scss";
 import GlobalStyles from "../../global.module.scss";
 import Banner from "../../Components/Banner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { emailValidate } from "../SignUp/Components/Email";
 import { InfoType } from "../../Context/types";
@@ -107,6 +107,13 @@ export default function Login(): JSX.Element {
           >
             ورود
           </button>
+        </div>
+
+        <div className={Styles.change}>
+          <h3 className={Styles.subtitle}>حسابی نداری؟</h3>
+          <Link to="/" className={Styles.title}>
+            یه حساب درست کن
+          </Link>
         </div>
       </div>
     </div>

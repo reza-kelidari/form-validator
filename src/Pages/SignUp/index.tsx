@@ -8,7 +8,7 @@ import Email, { emailValidate } from "./Components/Email";
 import useFormContext from "../../Context/Form";
 import Password, { passwordValidate } from "./Components/Password";
 import { signUp } from "../../Services/Firebase/Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /**
  * This page renders a multi step sign up form, validates
@@ -111,6 +111,13 @@ export default function SignUp(): JSX.Element {
           >
             بعدی
           </button>
+        </div>
+
+        <div className={Styles.change}>
+          <h3 className={Styles.subtitle}>از قبل حساب داری؟</h3>
+          <Link to="/login" className={Styles.title}>
+            وارد شو
+          </Link>
         </div>
       </div>
     </div>

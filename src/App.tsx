@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FormContext } from "./Context/Form";
 import { InfoType } from "./Context/types";
 import Login from "./Pages/Login";
+import Profile from "./Pages/Profile";
 
 function App() {
   /**
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
     </FormContext.Provider>

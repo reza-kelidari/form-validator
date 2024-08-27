@@ -6,7 +6,9 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
+  Unsubscribe,
   updateProfile,
+  User,
 } from "firebase/auth";
 import { InfoType } from "../../Context/types";
 import { SignUpOrLoginType } from "./types";
@@ -113,7 +115,7 @@ export async function logout(): Promise<void> {
 /**
  * Sends a verification email to user
  */
-export async function verify(): Promise<void> {
+export async function sendVerificationEmail(): Promise<void> {
   try {
     if (auth.currentUser) {
       await sendEmailVerification(auth.currentUser);
@@ -138,4 +140,21 @@ export async function deleteAccount(): Promise<void> {
   } catch (error: any) {
     throw new Error(error.code);
   }
+}
+
+/**
+ * Provides logged in user's informations
+ *
+ * This method waits until user data fetched from server
+ */
+export async function getUser(): Promise<User> {
+  let unsubscribe: Unsubscribe;
+  await new Promise<User>(
+    (resolve) =>
+      (unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) resolve(user);
+        else throw new Error("An error occured");
+      }))
+  );
+  return auth.currentUser as User;
 }
