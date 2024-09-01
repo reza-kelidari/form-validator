@@ -6,7 +6,6 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
-  Unsubscribe,
   updateProfile,
   User,
 } from "firebase/auth";
@@ -153,13 +152,11 @@ export async function deleteAccount(): Promise<void> {
  * This method waits until user data fetched from server
  */
 export async function getUser(): Promise<User> {
-  let unsubscribe: Unsubscribe;
-  await new Promise<User>(
-    (resolve) =>
-      (unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) resolve(user);
-        else throw new Error("An error occured");
-      }))
+  await new Promise<User>((resolve) =>
+    auth.onAuthStateChanged((user) => {
+      if (user) resolve(user);
+      else throw new Error("An error occured");
+    })
   );
   return auth.currentUser as User;
 }
